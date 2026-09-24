@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <signal.h>
+#include <stdlib.h>
+void h(int s) {
+if(s==SIGINT) {
+printf("SIGINT received\n");
+exit(0);
+}
+if(s==SIGTERM) {
+printf("SIGTERM received\n");
+exit(0);
+}
+if(s==SIGUSR1)
+printf("SIGUSR1 received\n");
+}
+int main()
+{
+signal(SIGINT,h);
+signal(SIGTERM,h);
+signal(SIGUSR1,h);
+printf("PID: %d\n",getpid());
+while(1)
+pause();
+return 0;
+}
