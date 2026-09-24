@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<unistd.h>
+#include <sys/wait.h>
+int main() {
+int pid = fork();
+if(pid == 0) {
+printf("Child Proces\n");
+printf("PID = %d\n", getpid());
+printf("PPID = %d\n", getppid());
+printf("State: Running\n");
+}
+else {
+printf("Parent Proces\n");
+printf("PID = %d\n", getpid());
+printf("PPID = %d\n", getppid());
+printf("State: Waiting\n");
+wait(NULL);
+printf("State: Running\n");
+}
+return 0;
+}
